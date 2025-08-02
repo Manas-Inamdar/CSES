@@ -6,24 +6,31 @@ int main()
 {
     int n;
     cin>>n;
-    if(n==1)
-    {
-        cout<<0<<endl;
-        return 0;
-    }
     vector<lli>arr(n);
+    lli mini=LLONG_MAX;
     for(int i=0;i<n;i++)
     {
         cin>>arr[i];
+        mini=min(mini,arr[i]);
     }
-    sort(arr.begin(),arr.end());
-    lli mid=arr[n/2];
-    lli ans=0;
+
+    lli curr=0;
+    lli ans=mini;
+
     for(int i=0;i<n;i++)
     {
-        ans+=abs(arr[i]-mid);
-
+        curr+=arr[i];
+        ans=max(ans,curr);
+        if(curr<0){
+            curr=0;
+        }
+    }
+    if(ans==0)
+    {
+        cout<<mini;
+        return 0;
     }
     cout<<ans;
+
     return 0;
 }
